@@ -1,4 +1,4 @@
-package com.reasons.bitcoin
+package com.reasons.bitcoin.view
 
 
 import android.content.BroadcastReceiver
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.reasons.bitcoin.R
 import com.reasons.bitcoin.broadcasts.AlarmReceiver
 import com.reasons.bitcoin.data.CoinRate
 import com.reasons.bitcoin.data.TargetToAchieve

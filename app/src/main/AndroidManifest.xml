@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BitCoin">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:launchMode="singleTop"
             android:exported="true">
             <intent-filter>

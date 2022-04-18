@@ -5,10 +5,9 @@ import android.app.*
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
-import android.view.View
 import androidx.core.app.NotificationCompat
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.reasons.bitcoin.MainActivity
+import com.reasons.bitcoin.view.MainActivity
 import com.reasons.bitcoin.R
 import com.reasons.bitcoin.service.BitconService
 import okhttp3.OkHttpClient
