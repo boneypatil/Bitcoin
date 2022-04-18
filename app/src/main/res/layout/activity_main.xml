@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="target"
+            type="com.reasons.bitcoin.data.TargetToAchieve" />
+
+        <variable
+            name="coinRate"
+            type="com.reasons.bitcoin.data.CoinRate" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@color/cardview_light_background"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/activityBitcoinTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/activityBitcoinMinRateLabelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/string_label_min_rate"
+            android:textColor="#668cc2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityBitcoinTitleTV" />
+
+        <EditText
+            android:id="@+id/activityBitcoinMinRateValueET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:text="@{target.minRate}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityBitcoinMinRateLabelTV"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/activityBitcoinMaxRateLabelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/string_label_max_rate"
+            android:textColor="#668cc2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityBitcoinMinRateValueET"
+
+            />
+
+        <EditText
+            android:id="@+id/activityBitcoinMaxRateValueET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:text="@{target.maxRate}"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityBitcoinMaxRateLabelTV"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/activityBitcoinUSDLabelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@{coinRate.bpi.USD.code}"
+            android:textAllCaps="true"
+            android:textColor="#668cc2"
+            android:visibility="@{coinRate.bpi.USD.code!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityBitcoinMaxRateValueET"
+            tools:text="USA"
+
+            />
+
+        <TextView
+            android:id="@+id/activityBitcoinUSDValueTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="@{coinRate.bpi.USD.rate}"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:visibility="@{coinRate.bpi.USD.code!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/activityBitcoinUSDLabelTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/activityBitcoinUSDLabelTV"
+            tools:text="1213318.1313"
+
+            />
+
+        <TextView
+            android:id="@+id/activityBitcoinGBPLabelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@{coinRate.bpi.GBP.code}"
+            android:textAllCaps="true"
+            android:textColor="#668cc2"
+            android:visibility="@{coinRate.bpi.GBP.code!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityBitcoinUSDLabelTV"
+            tools:text="GBP" />
+
+        <TextView
+            android:id="@+id/activityBitcoinGBPValueTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="@{coinRate.bpi.GBP.rate}"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:visibility="@{coinRate.bpi.GBP.code!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/activityBitcoinGBPLabelTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/activityBitcoinGBPLabelTV"
+            tools:text="121331448.1313" />
+
+        <TextView
+            android:id="@+id/activityBitcoinEURLabelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@{coinRate.bpi.EUR.code}"
+            android:textAllCaps="true"
+            android:textColor="#668cc2"
+            android:visibility="@{coinRate.bpi.EUR.code!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityBitcoinGBPValueTV"
+            tools:text="EUR"
+
+            />
+
+        <TextView
+            android:id="@+id/activityBitcoinEURValueTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="@{coinRate.bpi.EUR.rate}"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:visibility="@{coinRate.bpi.EUR.code!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/activityBitcoinEURLabelTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/activityBitcoinEURLabelTV"
+            tools:text="121331448.1313" />
+
+        <ToggleButton
+            android:id="@+id/activityBitcoinToggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/label_toggle_edit"
+            android:textOn="@string/label_toggle_save"
+            app:layout_constraintBottom_toBottomOf="@+id/activityBitcoinMaxRateValueET"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/activityBitcoinMinRateLabelTV"
+            tools:layout_editor_absoluteX="379dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

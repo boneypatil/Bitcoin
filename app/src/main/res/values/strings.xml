@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BitCoin</string>
+    <string name="string_label_min_rate">Please set minimum acceptance rate</string>
+    <string name="string_label_max_rate">Please set Maximum acceptance rate</string>
+    <string name="label_toggle_edit">Edit</string>
+    <string name="label_toggle_save">Save</string>
+    <string name="extra_intent_localbroadcast_bitcoin">bitcoin</string>
+    <string name="intent_filter_event">anEvent</string>
+</resources>
