@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.reasons.bitcoin.BuildConfig
 import com.reasons.bitcoin.view.MainActivity
 import com.reasons.bitcoin.R
 import com.reasons.bitcoin.service.BitconService
@@ -28,7 +29,7 @@ fun getBitcoinService(): BitconService {
         .writeTimeout(60, TimeUnit.SECONDS)
         .build()
     val retrofit = getRetrofitObject()
-    return retrofit.baseUrl("https://api.coindesk.com")
+    return retrofit.baseUrl(BuildConfig.BASE_URL)
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .addConverterFactory(MoshiConverterFactory.create())
         .client(okHttpClient)

@@ -38,6 +38,29 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    flavorDimensions "default"
+    productFlavors {
+        def baseURL = 'BASE_URL'
+        mock {
+            buildConfigField 'String', baseURL, '"https://api.coindesk.com"'
+            applicationIdSuffix ".mock"
+            dimension "default"
+            manifestPlaceholders = [appLabel: "@string/app_name_local"]
+        }
+        dev {
+            buildConfigField 'String', baseURL, '"https://api.coindesk.com"'
+            applicationIdSuffix ".dev"
+            dimension "default"
+            manifestPlaceholders = [appLabel: "@string/app_name_dev"]
+        }
+        prod {
+            buildConfigField 'String', baseURL, '"https://api.coindesk.com"'
+            applicationIdSuffix ""
+            versionNameSuffix ""
+            dimension "default"
+            manifestPlaceholders = [appLabel: "@string/app_name"]
+        }
+    }
 }
 
 dependencies {
