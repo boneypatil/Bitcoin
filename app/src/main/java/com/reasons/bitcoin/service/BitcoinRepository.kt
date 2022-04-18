@@ -9,6 +9,7 @@ class BitcoinRepository(private val targetDao: TargetDao, private val coinRateDa
 
     suspend fun getTarget() = targetDao.getTarget()
     fun getCoinRate() = coinRateDao.getCoinRate()
+    suspend  fun getCoinRateTest() = coinRateDao.getCoinRateTest()
 
     suspend fun insertTarget(target: TargetToAchieve) {
         targetDao.insert(target)

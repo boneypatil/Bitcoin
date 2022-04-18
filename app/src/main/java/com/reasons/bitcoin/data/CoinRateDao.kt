@@ -11,6 +11,8 @@ interface CoinRateDao {
     @Query("SELECT * FROM coin_rate")
      fun getCoinRate(): Flow<CoinRate>
 
+    @Query("SELECT * FROM coin_rate")
+    suspend   fun getCoinRateTest(): CoinRate
     @Insert
     suspend fun insert(rate: CoinRate)
 
