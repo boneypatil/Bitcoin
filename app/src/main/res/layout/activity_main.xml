@@ -53,6 +53,7 @@
             android:ems="10"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
+            android:textColor="@color/black"
             android:text="@{target.minRate}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activityBitcoinMinRateLabelTV"
@@ -88,17 +89,15 @@
             android:id="@+id/activityBitcoinUSDLabelTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:fontFamily="sans-serif-black"
             android:text="@{coinRate.bpi.USD.code}"
             android:textAllCaps="true"
             android:textColor="#668cc2"
             android:visibility="@{coinRate.bpi.USD.code!=null ? View.VISIBLE : View.GONE}"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activityBitcoinMaxRateValueET"
-            tools:text="USA"
 
-            />
+            app:layout_constraintTop_toBottomOf="@+id/activityBitcoinToggleButton"
+            tools:text="USA" />
 
         <TextView
             android:id="@+id/activityBitcoinUSDValueTV"
@@ -180,10 +179,21 @@
             android:layout_height="wrap_content"
             android:textOff="@string/label_toggle_edit"
             android:textOn="@string/label_toggle_save"
-            app:layout_constraintBottom_toBottomOf="@+id/activityBitcoinMaxRateValueET"
+            android:foreground="?android:attr/selectableItemBackground"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/activityBitcoinMinRateLabelTV"
-            tools:layout_editor_absoluteX="379dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityBitcoinMaxRateValueET" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{coinRate!=null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
