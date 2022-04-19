@@ -23,8 +23,8 @@ class AlarmReceiver : BroadcastReceiver() {
         assert(am != null)
         am.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
-            (System.currentTimeMillis() / 1000L + 15L) * 1000L,
+            (System.currentTimeMillis() / 1000L + 60L) * 1000L,
             pi
-        ) //Next alarm in 15s
+        )
     }
 }
