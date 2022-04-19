@@ -24,7 +24,8 @@ import org.koin.android.ext.android.inject
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by inject()
-
+    private var processed = false
+    private var saveState = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -33,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         val alarm = AlarmReceiver()
         alarm.setAlarm(this)
         viewModel.readTarget()
+        binding.activityBitcoinToggleButton.isEnabled = false
+
+
     }
 
     override fun onResume() {
@@ -69,7 +73,8 @@ class MainActivity : AppCompatActivity() {
         if (it == null)
             return@Observer
         binding.target = it
-
+        if (checkIfNotEmpty())
+            setSaveView()
 
     }
     private val rateChangeObserver = Observer<CoinRate> {
@@ -84,37 +89,47 @@ class MainActivity : AppCompatActivity() {
         binding.activityBitcoinMinRateValueET.addTextChangedListener(minRateWatcher)
         binding.activityBitcoinMaxRateValueET.addTextChangedListener(maxRateWatcher)
 
-//        binding.activityBitcoinToggleButton.setOnCheckedChangeListener { _, isChecked ->
-//            if (isChecked) {
-//                // The toggle is enabled
-//                if (checkIfNotEmpty())
-//                    viewModel.insertTarget(
-//                        TargetToAchieve(
-//                            binding.activityBitcoinMinRateValueET.text.toString(),
-//                            binding.activityBitcoinMaxRateValueET.text.toString()
-//                        )
-//                    )
-//            } else {
-//                disableToggleState()
-//            }
-//        }
         binding.activityBitcoinToggleButton.setOnClickListener {
-            val isChecked = binding.activityBitcoinToggleButton.isChecked
-            if (!isChecked) {
+            if (processed) {
                 if (checkIfNotEmpty())
-                    viewModel.insertTarget(
-                        TargetToAchieve(
-                            binding.activityBitcoinMinRateValueET.text.toString(),
-                            binding.activityBitcoinMaxRateValueET.text.toString()
-                        )
-                    )
+                if (saveState) {
+                    saveTarget()
+                    setSaveView()
+                } else {
+                    editView()
+                }
             } else {
                 disableToggleState()
-
             }
         }
 
+    }
 
+    private fun setSaveView() {
+        binding.activityBitcoinToggleButton.isChecked = false
+        binding.activityBitcoinMinRateValueET.isEnabled = false
+        binding.activityBitcoinMaxRateValueET.isEnabled = false
+        binding.activityBitcoinMinRateValueET.isClickable = false
+        binding.activityBitcoinMaxRateValueET.isClickable = false
+        saveState = false
+    }
+
+    private fun editView() {
+
+        binding.activityBitcoinMinRateValueET.isClickable = true
+        binding.activityBitcoinMaxRateValueET.isClickable = true
+        binding.activityBitcoinMinRateValueET.isEnabled = true
+        binding.activityBitcoinMaxRateValueET.isEnabled = true
+        saveState = true
+    }
+
+    private fun saveTarget() {
+        viewModel.insertTarget(
+            TargetToAchieve(
+                binding.activityBitcoinMinRateValueET.text.toString(),
+                binding.activityBitcoinMaxRateValueET.text.toString()
+            )
+        )
     }
 
     private val minRateWatcher = object : TextWatcher {
@@ -131,8 +146,7 @@ class MainActivity : AppCompatActivity() {
         val maxValue = binding.activityBitcoinMaxRateValueET.text
 
         if (minValue.isNotEmpty() && maxValue.isNotEmpty()) {
-            binding.activityBitcoinToggleButton.isChecked = true
-            binding.activityBitcoinToggleButton.isEnabled = true
+            processedToSaveTarget()
 
             return true
         } else if (minValue.isEmpty()) {
@@ -149,9 +163,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun processedToSaveTarget() {
+        binding.activityBitcoinToggleButton.isChecked = true
+        binding.activityBitcoinToggleButton.isEnabled = true
+        processed = true
+    }
+
     private fun disableToggleState() {
         binding.activityBitcoinToggleButton.textOff
         binding.activityBitcoinToggleButton.isEnabled = false
+        processed = false
     }
 
 
