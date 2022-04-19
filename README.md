@@ -1,2 +1,9 @@
 # Bitcoin
-A demonstration of continuously running service and fetching data  one minute and display data using broadcast.
+A demonstration of continuously running foreground service and display realtime  data.
+
+Tech Stack used
+Koin
+Room
+MVVM
+Data Binding 
+
